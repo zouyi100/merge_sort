@@ -1,31 +1,68 @@
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>sort</title>
 <style>
-.text {height:50px;width:70px;font-size:25px;}
-.btn {margin-top:10px;height:35px;width:70px;}
+.text {height:50px;width:70px;font-size:25px;margin-left:5px;margin-right:5px;}
+.btn {margin-top:10px;margin-left:5px;margin-right:5px;height:35px;width:70px;}
 </style>
+
+<script type="text/javascript">
+
+  var num = 2;
+  
+  function Create()
+  {
+    var str = "n" + num.toString();
+    var input = document.createElement('input');
+    input.setAttribute('class','text');
+    input.setAttribute('name',str);
+    input.setAttribute('type','text');
+    input.setAttribute('id',str);
+    document.getElementById('inputbox').appendChild(input);
+    num++;
+  }
+
+  function Match()
+  {
+    var n;
+    var judge = 1;
+    for (n = 0;n < num;n++)
+    {
+      var str = "n" + n.toString();     
+      if (document.getElementById(str).value == "")
+      {
+        judge = 0;
+        break;
+      }
+    }
+    if (judge == 1)
+    {
+      document.getElementById("form1").action = "merge_sort.php";
+      document.getElementById("form1").submit();
+    }
+    else
+      alert("There Is Some Blanks !");
+  }
+
+</script>
+
 </head>
 
 <body>
 
 <div>
-  <h1>Please Input Eight Numbers :</h1>
+  <h1>Please Input Source Array, Use "ADD" To Add The Blank :</h1>
 </div>
-<form id="form1" name="form1" method="post" action="merge_sort.php">
-  <div>
-    <input class="text" type="text" value="" name="n0"/>
-    <input class="text" type="text" value="" name="n1"/>
-    <input class="text" type="text" value="" name="n2"/>
-    <input class="text" type="text" value="" name="n3"/>
-    <input class="text" type="text" value="" name="n4"/>
-    <input class="text" type="text" value="" name="n5"/>
-    <input class="text" type="text" value="" name="n6"/>
-    <input class="text" type="text" value="" name="n7"/>
+<form id="form1" name="form1" method="post" >
+  <div id="inputbox">
+    <input class="text" type="text" name="n0" id="n0" />
+    <input class="text" type="text" name="n1" id="n1" />
   </div>
   <div>
-    <input type="submit" class="btn" value="Submit" name="button" id="button" />
+    <input type="submit" class="btn" value="Submit" name="button" id="button" onclick="Match()" />
+    <input type="button" class="btn" value="Add" name="add" id="add" onclick="Create()" />
   </div>
 </form>
 

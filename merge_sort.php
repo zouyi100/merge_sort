@@ -1,13 +1,16 @@
 <?php
+
+    $num = 0;
     $arr = array();
-    $arr[0] = $_POST['n0'];
-    $arr[1] = $_POST['n1'];
-    $arr[2] = $_POST['n2'];
-    $arr[3] = $_POST['n3'];
-    $arr[4] = $_POST['n4'];
-    $arr[5] = $_POST['n5'];
-    $arr[6] = $_POST['n6'];
-    $arr[7] = $_POST['n7'];
+    foreach ($_POST as $key => $value)
+    {
+        if ($key == "button")
+            break;
+        else
+        {
+    	    $arr[$num++] = $value;
+        }
+    }
 
     function merge(&$sourcearr,$temparr,$start,$mid,$end)
     {
@@ -46,7 +49,7 @@
         }
     }
 
-    merge_sort($arr,$temp,0,7);
+    merge_sort($arr,$temp,0,$num-1);
     echo "<h1>The Answer Array Is :</h1>";
     foreach($arr as $value)
     {
